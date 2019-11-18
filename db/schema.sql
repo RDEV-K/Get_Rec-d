@@ -1,5 +1,5 @@
-CREATE DATABASE leagues_db;
-USE leagues_db;
+CREATE DATABASE recLTS_db;
+USE recLTS_db;
 
 CREATE TABLE leagues
 (
