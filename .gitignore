@@ -60,5 +60,9 @@ typings/
 # next.js build output
 .next
 
+
+# ignoring the config folder
+config/
+
 # Apple Computer File
 .DS_Store
