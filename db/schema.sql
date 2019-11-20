@@ -27,7 +27,7 @@ CREATE TABLE teams
     PRIMARY KEY (id)
 );
 
-CREATE TABLE players
+CREATE TABLE users
 (
     id INT NOT NULL AUTO_INCREMENT,
     player_name VARCHAR(100) NOT NULL,
