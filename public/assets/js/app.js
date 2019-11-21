@@ -54,25 +54,25 @@ $(function () {
   });
 })
 //create new player with their data and store them 
-  $(".create-form").on("submit", function (event) {
-    event.preventDefault();
+  // $(".create-form").on("submit", function (event) {
+  //   event.preventDefault();
 
-    var newPlayer = {
-      name: $("#usernameInput").val().trim(),
-      password: $("#pwdInput").val().trim(),
-      email: $("#emailInput").val().trim(),
-      zipcode: $("#zipInput").val().trim(),
-      phone: $("#phone").val().trim(),
-    };
-    console.log(newPlayer);
+  //   var newPlayer = {
+  //     name: $("#usernameInput").val().trim(),
+  //     password: $("#pwdInput").val().trim(),
+  //     email: $("#emailInput").val().trim(),
+  //     zipcode: $("#zipInput").val().trim(),
+  //     phone: $("#phone").val().trim(),
+  //   };
+  //   console.log(newPlayer);
 
-    //add new player, send as POST request
-    $.ajax("/players/createNew", {
-      type: "POST",
-      data: newPlayer,
-    }).then(
-      function () {
-        console.log("new player is added!");
-      }
-    )
-  })
+  //   //add new player, send as POST request
+  //   $.ajax("/players/createNew", {
+  //     type: "POST",
+  //     data: newPlayer,
+  //   }).then(
+  //     function () {
+  //       console.log("new player is added!");
+  //     }
+  //   )
+  // })
