@@ -9,17 +9,17 @@ module.exports = function (sequelize, DataTypes) {
         },
     });
 
-    StatName.associate = function (models) {
-        // We're saying that a Team should belong to an Author
-        // A Team can't be created without an League due to the foreign key constraint
-        StatName.belongsTo(models.Stat, {
-            foreignKey: {
-                reference: Stat,
-                key: "id",
-                allowNull: false
-            }
-        });
-    };
+    // StatName.associate = function (models) {
+    //     // We're saying that a Team should belong to an Author
+    //     // A Team can't be created without an League due to the foreign key constraint
+    //     StatName.belongsTo(models.Stat, {
+    //         foreignKey: {
+    //             reference: Stat,
+    //             key: "id",
+    //             allowNull: false
+    //         }
+    //     });
+    // };
 
     return StatName;
 };

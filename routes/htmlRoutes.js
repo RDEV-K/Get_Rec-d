@@ -25,7 +25,7 @@ module.exports = function(app) {
     app.get("/community", function(req, res) {
         res.render("community.handlebars");
     });
-  });
+ 
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
