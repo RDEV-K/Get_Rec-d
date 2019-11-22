@@ -1,13 +1,29 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
-  app.get("/", function(req, res) {
-    db.recLTS_db.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
+
+    app.get("/", function(req, res) {
+        res.render("index");
+    });
+
+    app.get("/signup", function(req, res) {
+        res.render("partials/signup.handlebars");
+    });
+
+    app.get("/profile", function(req, res) {
+        res.render("profile.handlebars");
+    });
+
+    app.get("/stats", function(req, res) {
+        res.render("stats.handlebars");
+    });
+
+    app.get("/leagues", function(req, res) {
+        res.render("leagues.handlebars");
+    });
+
+    app.get("/community", function(req, res) {
+        res.render("community.handlebars");
     });
   });
 
