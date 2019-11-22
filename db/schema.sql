@@ -21,6 +21,10 @@ CREATE TABLE stats_recorded
     stat_id INT NOT NULL,
     stat INT NOT NULL,
     PRIMARY KEY (id)
+    FOREIGN KEY (league_id) REFERENCES leagues(id)
+    FOREIGN KEY (team_id) REFERENCES teams(id)
+    FOREIGN KEY (user_id) REFERENCES user(id)
+    FOREIGN KEY (stat_id) REFERENCES stats_defined(id)
 };
 
 CREATE TABLE stats_defined
