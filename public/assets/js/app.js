@@ -8,6 +8,12 @@ ml4.durationIn = 800;
 ml4.durationOut = 600;
 ml4.delay = 500;
 
+
+var landingPage = {};
+landingPage.opacityIn = [0,1];
+landingPage.durationIn = 200;
+
+
 anime.timeline({loop: false})
   .add({
     targets: '.ml4 .letters-1',
@@ -38,4 +44,16 @@ anime.timeline({loop: false})
     opacity: ml4.opacityIn,
     scale: ml4.scaleIn,
     duration: ml4.durationIn
+  }).add({
+    targets: ['.ml4 .letters-3', '.opening-screen'],
+    opacity: 0,
+    scale: ml4.scaleOut,
+    duration: ml4.durationOut,
+    easing: "easeInExpo",
+    delay: ml4.delay
+  }).add({
+    targets: '.landing-page',
+    opacity: landingPage.opacityIn,
+    duration: landingPage.durationIn,
+    easing: "easeInOutCirc",
   });
