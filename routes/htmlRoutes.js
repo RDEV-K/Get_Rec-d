@@ -3,11 +3,11 @@ var db = require("../models");
 module.exports = function(app) {
 
     app.get("/", function(req, res) {
-        res.render("index");
+        res.render("index", {layout: 'nonav.handlebars'});
     });
 
     app.get("/signup", function(req, res) {
-        res.render("partials/signup.handlebars");
+        res.render("partials/signup.handlebars", {layout: 'nonav.handlebars'});
     });
 
     app.get("/profile", function(req, res) {
