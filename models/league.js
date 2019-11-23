@@ -1,12 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
     var League = sequelize.define("League", {
-      // Giving the Author model a name of type STRING
+      // Giving the League model a name of type STRING
       league_name: DataTypes.STRING,
     });
   
     League.associate = function(models) {
-      // Associating Author with Posts
-      // When an Author is deleted, also delete any associated Posts
+      // Associating League with Teams
+      // When a League is deleted, also delete any associated Teams
       League.hasMany(models.Team, {
         onDelete: "cascade"
       });
