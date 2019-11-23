@@ -58,4 +58,5 @@ anime.timeline({loop: false})
     scale: 1
   });
 
-  
+//sign up button 
+
