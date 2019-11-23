@@ -1,0 +1,39 @@
+.opening-screen{
+    background-color: #002b5c;
+    height: 100vh;
+    position: relative;
+}
+.landing-page{
+    position: absolute;
+    top:0;
+    left: 0;
+    opacity: 0;
+    background-color: #c4ced4;
+}
+
+.jumbotron{
+  background-image: url("http://www.adweek.com/files/2015_May/iStock-Unfinished-Business-6.jpg");
+  background-size: 100%;
+}
+.container-fluid{
+  padding: 0;
+}
+.lead{
+  text-shadow: 1px 1px rgba(225, 225, 225, .2);
+  font-weight: bold;
+  color: #002b5c;
+}
+.ml4 {
+    position: relative;
+    font-weight: 900;
+    font-size: 4.5em;
+    color: #c4ced4;
+  }
+  .ml4 .letters {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    opacity: 0; 
+    color: #c4ced4;
+  }
