@@ -9,16 +9,13 @@ module.exports = {
 },
 "test": {
     "username": "root",
-    "password": null,
+    "password": process.env.developmentPassword,
     "database": "database_test",
     "host": "localHost",
     "dialect": "mysql"
 },
 "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "localHost",
+    "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
 }
 };

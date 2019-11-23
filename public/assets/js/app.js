@@ -11,8 +11,6 @@ ml4.delay = 500;
 
 var landingPage = {};
 landingPage.opacityIn = [0,1];
-landingPage.durationIn = 200;
-
 
 anime.timeline({loop: false})
   .add({
@@ -54,6 +52,11 @@ anime.timeline({loop: false})
   }).add({
     targets: '.landing-page',
     opacity: landingPage.opacityIn,
-    duration: landingPage.durationIn,
     easing: "easeInOutCirc",
+  }).add({
+    targets: ['.ml4', '.opening-screen'],
+    scale: 1
   });
+
+//sign up button 
+

@@ -1,7 +1,7 @@
 {
-  "name": "mvc_design",
+  "name": "get_recd",
   "version": "1.0.0",
-  "description": "burgers utilizing mvc model",
+  "description": "rec league management site",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
