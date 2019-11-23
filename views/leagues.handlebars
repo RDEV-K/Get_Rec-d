@@ -1,0 +1,109 @@
+<div class="container-fluid d-flex justify-content-around pt-5">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-league">
+        Create League
+    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-team">
+        Create Team
+    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-player">
+        Join Team
+    </button>
+
+    <div id="leagues-list"></div>
+
+    {{!- modal for new league --}}
+    <div class="modal fade" id="new-league" tabindex="-1" role="dialog" aria-labelledby="new-league-modal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="new-league-modal">Create New League</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="new-league-name">League Name</label>
+                        <input type="text" class="form-control" id="new-league-name" placeholder="league name">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-league-team">Team Name</label>
+                        <input type="text" class="form-control" id="new-league-team" placeholder="team name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#"><button id="submit-league" type="button" class="btn btn-primary">Submit</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!- modal for new team --}}
+
+    <div class="modal fade" id="new-team" tabindex="-1" role="dialog" aria-labelledby="new-team-modal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="new-team-modal">Create New Team</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="new-team-name">Team Name</label>
+                        <input type="text" class="form-control" id="new-team-name" placeholder="team name">
+                    </div>
+                    <div class="form-group">
+                        <label for="league-choices">Choose a league</label>
+                        <select class="form-control" id="league-choices">
+                            {{!-- this will need to be populated with handlebars; these are examples for now --}}
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#"><button type="button" id="submit-team" class="btn btn-primary">Submit</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!- modal for new player--}}
+
+    <div class="modal fade" id="new-player" tabindex="-1" role="dialog" aria-labelledby="join-team-modal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="join-team-modal">Create New League</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="team-choices">Pick a team</label>
+                        <select class="form-control" id="team-choices">
+                            {{!-- this will need to be populated with handlebars; these are examples for now --}}
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#"><button type="button" id="join-team" class="btn btn-primary">Submit</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
