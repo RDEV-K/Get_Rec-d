@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   League.associate = function(models) {
-    Leagues have many teams
+    // Leagues have many teams
     League.hasMany(models.Team,{
       as: "Team",
       foreignKey: "LeagueID",
