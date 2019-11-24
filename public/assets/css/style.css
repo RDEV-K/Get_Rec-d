@@ -110,3 +110,9 @@ text-decoration-line: underline;
   margin-left: 20px;
   margin-right: 20px;
 }
+
+#leagues-jumbotron{
+  background-image: url('../images/soccer.jpg');
+  background-position-y: 50%;
+
+}
