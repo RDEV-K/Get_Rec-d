@@ -5,7 +5,8 @@ module.exports = {
   "password": process.env.developmentPassword,
     "database": "recLTS_db",
     "host": "localHost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "dialectModule": "mysql2"
 },
 "test": {
     "username": "root",
