@@ -117,5 +117,10 @@ text-decoration-line: underline;
   background-size: cover;
   padding-top: 10%;
   padding-bottom: 10%;
+}
 
+#statBtn {
+  background-color: #002b5c;
+  color: #c4ced4;
+  border-color: #002b5c;
 }
