@@ -1,7 +1,7 @@
 <!--Create New Account-->
 <h1 class="text-center">Create New Account!</h1>
 
-<form class="col-lg-6 offset-lg-3 ">
+<form class="col-lg-6 offset-lg-3 create-form">
     <div class="form-group">
         <label for="username">username</label>
         <input type="username" class="form-control" id="usernameInput" placeholder="teamplayer">
@@ -23,6 +23,6 @@
         <input type="phone" class="form-control" id="phone" placeholder="555 555 5555">
     </div>
 
-    <button class="btn btn-primary">Submit</button>
-
+   <a href="/profile"><button id="new-user" class="btn btn-primary">Submit</button></a>
+    {{!-- code for this is in the app.js file under function newUser --}}
 </form>
