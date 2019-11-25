@@ -1,14 +1,14 @@
 var db = require("../models");
 
 module.exports = function(app) {
-    app.get("/api/users", function(req, res) {
-      db.User.findAll({}).then(function(dbUser) {
+    app.get("/api/user", function(req, res) {
+      db.user.findAll({}).then(function(dbUser) {
         res.json(dbUser);
       });
     });
   
-    app.get("/api/users/:id", function(req, res) {
-      db.User.findOne({
+    app.get("/api/user/:id", function(req, res) {
+      db.user.findOne({
         where: {
           id: req.params.id
         }
@@ -17,14 +17,14 @@ module.exports = function(app) {
       });
     });
   
-    app.post("/api/users", function(req, res) {
-      db.User.create(req.body).then(function(dbUser) {
+    app.post("/api/user", function(req, res) {
+      db.user.create(req.body).then(function(dbUser) {
         res.json(dbUser);
       });
     });
   
-    app.delete("/api/users/:id", function(req, res) {
-      db.User.destroy({
+    app.delete("/api/user/:id", function(req, res) {
+      db.user.destroy({
         where: {
           id: req.params.id
         }

@@ -2,7 +2,7 @@ require('dotenv').config(); // this is important!
 module.exports = {
 "development": {
   "username": "root",
-  "password": "Nrc51489!",
+  "password": process.env.developmentPassword,
     "database": "recLTS_db",
     "host": "localHost",
     "dialect": "mysql",
