@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     // Teams belong to Leagues
     Team.belongsTo(models.league);
     Team.belongsToMany(models.user, { as: 'Players', through: 'teamUserXR' })
+
   };
   return Team;
 };

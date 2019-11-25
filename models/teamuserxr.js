@@ -22,22 +22,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   TeamUserXR.associate = function(models) {
     // associations can be defined here
-    // team.belongsToMany(models.TeamUserXR, {
-    //   through: {
-    //     model: User,
-    //     unique: false,
-    //   },
-    //   foreignKey: 'user_id',
-    //   constraints: false
-    // });
-    // user.belongsToMany(models.TeamUserXR, {
-    //   through: {
-    //     model: Team,
-    //     unique: false,
-    //   },
-    //   foreignKey: 'team_id',
-    //   constraints: false
-    // });
+
+    TeamUserXR.belongsToMany(models.leaguestatXR, { as: 'LeagueStatName', through: 'statxr' })
 
   };
   return TeamUserXR;

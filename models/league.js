@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   League.associate = function(models) {
     // Leagues have many teams
     League.hasMany(models.team);
+    League.belongsToMany(models.stat, { as: 'Stat', through: 'leaguestatXR' })
+
   };
   return League;
 };
