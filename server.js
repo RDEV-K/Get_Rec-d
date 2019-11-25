@@ -28,7 +28,6 @@ require("./routes/statsRecorded-apiRoutes")(app);
 require("./routes/team-apiRoutes")(app);
 require("./routes/user-apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-require("./routes/apiRoutes")(app);
 
 
 var syncOptions = { force: false };
