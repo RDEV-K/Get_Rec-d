@@ -5,10 +5,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Team.associate = function(models) {
     // Teams belong to Leagues
-    Team.belongsTo(models.League,{
-      foreignKey: "LeagueID",
-      targetKey: "LeagueID"
-    });
+    Team.belongsTo(models.league);
+    Team.belongsToMany(models.user, { as: 'Players', through: 'teamUserXR' })
   };
   return Team;
 };

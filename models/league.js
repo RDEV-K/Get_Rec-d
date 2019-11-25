@@ -5,11 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   League.associate = function(models) {
     // Leagues have many teams
-    League.hasMany(models.Team,{
-      as: "Team",
-      foreignKey: "LeagueID",
-      sourceKey: "LeagueID"
-    });
+    League.hasMany(models.team);
   };
   return League;
 };
