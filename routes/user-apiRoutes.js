@@ -18,8 +18,18 @@ module.exports = function(app) {
     });
   
     app.post("/api/user", function(req, res) {
-      db.user.create(req.body).then(function(dbUser) {
+      db.user.create({
+        name: req.body.name,
+        password: req.body.password, 
+        email: req.body.email,
+        phone: parseInt(req.body.phone),
+        zip: parseInt(req.body.zip),
+        createdAt: req.body.createdAt,
+        updatedAt: req.body.updatedAt
+
+      }).then(function(dbUser) {
         res.json(dbUser);
+        //need to send each piecce individually for parseINT
       });
     });
   
