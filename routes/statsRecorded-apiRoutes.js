@@ -32,6 +32,11 @@ module.exports = function(app) {
         res.json(dbStat);
       });
     });
-  
+    app.post("/api/chart", function(req, res) {
+      db.chart.create(req.body).then(function(dbChart) {
+        res.json(dbChart);
+      });
+    });
   };
   
+      //this is the dummy route for Chart.js

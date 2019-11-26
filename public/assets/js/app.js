@@ -160,25 +160,33 @@ function getBudgets() {
   //  if (userString) {
   //   userString = "/user/" + userString;
   // }
-  $.get("/api/" + userString, function(data) {
-    // console.log("Budgets", data);
-    for (var i = 0; i < data.length; i++){
-      categories.push(data[i].name + ": $" + data[i].amount_spent);
-      categoryValue.push(data[i].amount_spent);
-    }
+
+  $("#submit-new-stat").on("click", function(){
+    var statsObj = {
+     stat1: $("#value1").val(),
+     stat2: $("#value2").val(),
+  };
+  $.get("/api/chart", function(data) {
+    console.log(data);
+    //add userString to get call
+    console.log("Stats", data);
+    // for (var i = 0; i < 5; i++){
+    //   categories.push("stat"+[i]);
+    //   categoryValue.push(data[i]);
+    // }
   }).then(() => {
     renderChart();
   })
 }
 
 function renderChart () {
-    new Chart(document.getElementById("budget-chart"), {
-      type: 'doughnut',
+    new Chart(document.getElementById("myChart"), {
+      type: 'bar',
       data: {
           labels: categories,
           datasets: [
               {
-                  label: "Budget (Dollars)",
+                  label: "Stats",
                   backgroundColor: ["#0000ff", "#ee82ee", "#3cba9f", "#e8c3b9", "#c45850",
                   "#00bfff", "#b22222", "#228b22", "#d2691e", "#4b0082", "#ffd700"],
                   data: categoryValue

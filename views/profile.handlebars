@@ -8,7 +8,7 @@
                 <a class="btn btn-primary btn-lg profBtn" href="#" role="button">Newsfeed</a>
             </p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg profBtn" href="#" role="button">Add New Stat</a>
+                <a class="btn btn-primary btn-lg profBtn"  data-toggle="modal" data-target="#statsModal" role="button">Add New Stat</a>
             </p>
         </div>
     </div>
@@ -37,4 +37,32 @@
         </div>
     </div>
     <div id="profileContent">
+
+ <div class="modal fade" id="statsModal" tabindex="-1" role="dialog" aria-labelledby="statsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="statsModalLabel">Add A Stat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="value1">stat one</label>
+                        <input type="integer" class="form-control" id="value1" placeholder="teamplayer">
+                    </div>
+                    <div class="form-group">
+                        <label for="value2">password</label>
+                        <input type="integer" class="form-control" id="value2" placeholder="yourpassword">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="/profile"><button type="button" class="btn btn-primary">Submit</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <canvas id="stats" width="400" height="400"></canvas>
     </div>
