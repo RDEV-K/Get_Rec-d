@@ -149,3 +149,41 @@ anime.timeline({ loop: false })
 //     )
 //   })
 // };
+
+//Charts.js Testing 
+var categories = [];
+var categoryValue = [];
+
+function getBudgets() {
+  //userID needs to be passed thru
+  //var userString = userID || "";
+  //  if (userString) {
+  //   userString = "/user/" + userString;
+  // }
+  $.get("/api/" + userString, function(data) {
+    // console.log("Budgets", data);
+    for (var i = 0; i < data.length; i++){
+      categories.push(data[i].name + ": $" + data[i].amount_spent);
+      categoryValue.push(data[i].amount_spent);
+    }
+  }).then(() => {
+    renderChart();
+  })
+}
+
+function renderChart () {
+    new Chart(document.getElementById("budget-chart"), {
+      type: 'doughnut',
+      data: {
+          labels: categories,
+          datasets: [
+              {
+                  label: "Budget (Dollars)",
+                  backgroundColor: ["#0000ff", "#ee82ee", "#3cba9f", "#e8c3b9", "#c45850",
+                  "#00bfff", "#b22222", "#228b22", "#d2691e", "#4b0082", "#ffd700"],
+                  data: categoryValue
+              }
+          ],
+      }
+    })
+  }
