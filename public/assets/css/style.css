@@ -119,3 +119,7 @@ text-decoration-line: underline;
   padding-bottom: 10%;
 
 }
+
+input:valid {
+  border: 2px solid black;
+}
