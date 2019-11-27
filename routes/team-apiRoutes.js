@@ -7,8 +7,8 @@ module.exports = function(app) {
       });
     });
   
-    app.get("/api/teams/:id", function(req, res) {
-      db.Team.findOne({
+    app.get("/api/team/:id", function(req, res) {
+      db.team.findOne({
         where: {
           id: req.params.id
         }
@@ -17,14 +17,14 @@ module.exports = function(app) {
       });
     });
   
-    app.post("/api/teams", function(req, res) {
-      db.Team.create(req.body).then(function(dbTeam) {
+    app.post("/api/team", function(req, res) {
+      db.team.create(req.body).then(function(dbTeam) {
         res.json(dbTeam);
       });
     });
   
-    app.delete("/api/teams/:id", function(req, res) {
-      db.Team.destroy({
+    app.delete("/api/team/:id", function(req, res) {
+      db.team.destroy({
         where: {
           id: req.params.id
         }

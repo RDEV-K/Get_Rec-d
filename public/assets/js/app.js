@@ -58,21 +58,86 @@ anime.timeline({ loop: false })
     scale: 1
   });
 
-  //outputs information on the profile page depending on the button pressed
-  $("#leagues-card").on("click", function(){
-    $("#profileContent").empty();
-    $("#profileContent").text("this is where league information goes");
-  });
+//outputs information on the profile page depending on the button pressed
+$("#leagues-card").on("click", function () {
+  $("#profileContent").empty();
+  $("#profileContent").text("this is where league information goes");
+});
 
-  $("#teams-card").on("click", function(){
-    $("#profileContent").empty();
-    $("#profileContent").text("this is where team information goes");
-  });
+$("#teams-card").on("click", function () {
+  $("#profileContent").empty();
+  $("#profileContent").text("this is where team information goes");
+});
 
-  $("#stats-card").on("click", function(){
-    $("#profileContent").empty();
-    $("#profileContent").text("this is where stat information goes");
-  });
+$("#stats-card").on("click", function () {
+  $("#profileContent").empty();
+  $("#profileContent").text("this is where stat information goes");
+});
+
+
+//form validation
+function validation(arg){
+  var argFirstName = arg.firstName.value;
+  var argLastName = arg.lastName.value;
+  var argUsername = arg.username.value;
+  var argPassword = arg.password.value;
+  var argEmail = arg.email.value;
+  var argZip = arg.zip.value;
+  var argPhone = arg.phone.value;
+  var err= "";
+  var errNum = 0;
+  var checkLetters = /^[A-Za-z]+$/;
+  var checkNumbers = /^[0-9]+$/;
+
+  if(argFirstName === "" || argFirstName.length < 2 || !checkLetters.test(argFirstName)){
+    errNum++;
+    err += errNum + ". Invalid Name. Please enter a name using only letters."
+  };
+
+  if(argLastName === "" || argLastName.length <2 || !checkLetters.text(argLastName)){
+    errNum++;
+    err += errNum + ". Invalid last name. Please enter a last name using only letters."
+  }
+
+  if(argUsername === "" || argUsername.length < 2 || argUsername.length > 25 || !checkLetters.text(argUsername)){
+    errNum++;
+    err += errNum + ". Invalid username. Please enter a username using only letters no longer than 25 characters"
+  } 
+
+  if(argPassword === "" || argPassword.length < 5 || argPassword.length > 25){
+    errNum++;
+    err += errNum + ". Invalid password. Please enter a password between 5 and 25 characters."
+  }
+  if(argPhone === "" || argPhone.length <= 9 || argPhone.length >= 11 || !checkNumbers(argPhone)){
+    errNum++;
+    err += errNum + ". Invalid phone number. Please enter a 10 digit phone number using only numbers - no spaces or special characters"
+
+  }
+  if(argEmail === ""){
+    errNum++;
+    err += errNum + ". Invalid email. Please enter a valid email such as name@email.com"
+  }
+  if(argZip === "" || argZip.length <= 4 || argZip.length >= 6 || !checkNumbers(argZip)){
+    errNum++;
+    err += errNum + ". Invalide zip coe. Please enter a five digit zip code using only numbers."
+  }
+
+  if(errNum > 0){
+    alert(err);
+    return false;
+  }else{
+    console.log('done');
+    return true;
+  }
+};
+
+
+
+
+
+
+
+
 
 //submits data to and from the database
 // $(function () {
@@ -90,9 +155,9 @@ anime.timeline({ loop: false })
 // //POST ajax call to the database when creating a new league - will need to edit the titles/syntax
 // function submitLeague() {
 //   $("#submit-league").on("click", function () {
-//     $.ajax("/api/leagues", {
+//     $.ajax("/api/league", {
 //       type: "POST",
-//       data: addedLeague
+//       name: 
 //     }).then(
 //       function () {
 //         console.log("created new league");
@@ -135,17 +200,18 @@ anime.timeline({ loop: false })
 //   });
 // };
 
-// //POST ajax call to the database when create a new account
-// function newUser(){
-//   $("#new-user").on("click", function(){
-//     $.ajax("/api/users", {
-//       type: "POST",
-//       data: addedUser
-//     }).then(
-//       function () {
-//         console.log("created new user");
-//         //think we would need to do a GET request for profile here instead of a reload...
-//       }
-//     )
-//   })
-// };
+//POST ajax call to the database when create a new account
+function newUser(){
+  $("#new-user").on("click", function(){
+    console.log("we clicked")
+    $.ajax("/api/users", {
+      type: "POST",
+      data: addedUser
+    }).then(
+      function () {
+        console.log("created new user");
+        //think we would need to do a GET request for profile here instead of a reload...
+      }
+    )
+  })
+};

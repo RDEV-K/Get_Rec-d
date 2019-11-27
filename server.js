@@ -29,6 +29,7 @@ require("./routes/team-apiRoutes")(app);
 require("./routes/user-apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
+
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
