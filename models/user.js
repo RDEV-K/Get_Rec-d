@@ -1,10 +1,28 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
-    name: {
+    userName: {
       type: DataTypes.STRING,
-      is: ["^[a-z]+$",'i'],
-      len: [5,25],
+      //only letters
+      is: ["^[a-z]+$", 'i'],
+      //between 3 and 25 chars
+      len: [3, 25],
+      notEmpty: true,
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      //only letters
+      is: ["^[a-z]+$", 'i'],
+      //between 2 and 25 chars
+      len: [2, 25],
+      notEmpty: true,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      //only letters
+      is: ["^[a-z]+$", 'i'],
+      //between 2 and 25 chars
+      len: [2, 25],
       notEmpty: true,
     },
     password: {
@@ -24,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     phone: {
       type: DataTypes.STRING,
       isNumeric: true,
-      len: [10,11],
+      len: [10, 11],
       notEmpty: true
     },
 
@@ -34,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       len: [5],
     }
   }, {});
-  User.associate = function(models) {
+  User.associate = function (models) {
     // associations can be defined here
     User.belongsToMany(models.team, { as: 'Teams', through: 'teamUserXR' })
     User.hasMany(models.message)
