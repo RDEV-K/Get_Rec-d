@@ -1,4 +1,23 @@
+<div id="leagues-jumbotron" class="jumbotron jumbotron-fluid">
+    <div class="jumbotron-text row text-center align-items-center justify-content-center">
+        <h1 class="display-4">League Information</h1>
+        <p class="lead">Checkout the all the different leagues in the area and join any new teams.</p>
+        <div class="buttons">
+            <button type="button" class="btn btn-primary profBtn btn-lg" data-toggle="modal" data-target="#new-league">
+                Create League
+            </button>
+            <button type="button" class="btn btn-primary profBtn btn-lg" data-toggle="modal" data-target="#new-team">
+                Create Team
+            </button>
+            <button type="button" class="btn btn-primary profBtn btn-lg" data-toggle="modal" data-target="#new-player">
+                Join Team
+            </button>
+        </div>
+    </div>
+
+</div>
 <div class="container-fluid d-flex justify-content-around pt-5">
+
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-league" id="createLeague">
         Create League
     </button>
@@ -8,6 +27,7 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-player" id="joinTeam">
         Join Team
     </button>
+
 
     <div id="leagues-list"></div>
 
@@ -83,7 +103,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="join-team-modal">Create New League</h5>
+                    <h5 class="modal-title" id="join-team-modal">Join a New Team</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
