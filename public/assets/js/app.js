@@ -205,17 +205,17 @@ function validation(arg){
 // };
 
 //POST ajax call to the database when create a new account
-function newUser(){
-  $("#new-user").on("click", function(){
-    console.log("we clicked")
-    $.ajax("/api/users", {
-      type: "POST",
-      data: addedUser
-    }).then(
-      function () {
-        console.log("created new user");
-        //think we would need to do a GET request for profile here instead of a reload...
-      }
-    )
-  })
-};
+// function newUser(){
+//   $("#new-user").on("click", function(){
+//     console.log("we clicked")
+//     $.ajax("/api/users", {
+//       type: "POST",
+//       data: addedUser
+//     }).then(
+//       function () {
+//         console.log("created new user");
+//         //think we would need to do a GET request for profile here instead of a reload...
+//       }
+//     )
+//   })
+// };

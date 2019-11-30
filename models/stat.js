@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     stat_name5: DataTypes.STRING
 
   }, {});
-  Stat.associate = function(models) {
-    // associations can be defined here
-    Stat.belongsToMany(models.league, { as: 'League', through: 'leaguestatXR' })
+  // Stat.associate = function(models) {
+  //   // associations can be defined here
+  //   Stat.belongsToMany(models.league, { as: 'League', through: 'leaguestatXR' })
 
-  };
+  // };
   return Stat;
 };
