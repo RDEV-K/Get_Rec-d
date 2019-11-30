@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     stat4: DataTypes.INTEGER,
     stat5: DataTypes.INTEGER
   }, {});
-  Statxr.associate = function(models) {
-    // associations can be defined here
-  };
+  // Statxr.associate = function(models) {
+  //   // associations can be defined here
+  // };
   return Statxr;
 };

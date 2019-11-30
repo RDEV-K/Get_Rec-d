@@ -119,8 +119,8 @@ text-decoration-line: underline;
   padding-bottom: 10%;
 }
 
-#statBtn {
-  background-color: #002b5c;
-  color: #c4ced4;
-  border-color: #002b5c;
+}
+
+input:valid {
+  border: 2px solid black;
 }

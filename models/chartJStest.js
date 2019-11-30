@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING 
     
   }, {});
-  Chart.associate = function(models) {
-    // associations can be defined here
-  };
+  // Chart.associate = function(models) {
+  //   // associations can be defined here
+  // };
   return Chart;
 };

@@ -22,6 +22,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
+require("./routes/active-apiRoutes")(app);
 require("./routes/league-apiRoutes")(app);
 require("./routes/message-apiRoutes")(app);
 require("./routes/statsRecorded-apiRoutes")(app);

@@ -5,11 +5,86 @@
             </h1>
             <p class="lead">Welcome to your profile.</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg profBtn" href="#" role="button">Newsfeed</a>
+                <a class="btn btn-primary btn-lg profBtn" href="#" role="button" data-toggle="modal" data-target="#new-teamStat" id="teamStat">Enter Team Stat</a>
             </p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg profBtn"  data-toggle="modal" data-target="#statsModal" role="button">Add New Stat</a>
+                <a class="btn btn-primary btn-lg profBtn" href="#" role="button" data-toggle="modal" data-target="#new-userStat" id="userStat">Enter Your Stat</a>
             </p>
+        </div>
+    </div>
+
+    {{!- modal for entering a team stat--}}
+
+    <div class="modal fade" id="new-teamStat" tabindex="-1" role="dialog" aria-labelledby="team-modal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="team-modal">Enter Team Stat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="teamStat-choices">Select team</label>
+                        <select class="form-control" id="teamStat-choices">
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="teamStat-select">Select stat</label>
+                        <select class="form-control" id="teamStat-select">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="new-stat-value">Enter Updated Value</label>
+                    <input type="text" class="form-control" id="new-stat-value" placeholder="enter updated value here">
+                </div>
+                <div class="modal-footer">
+                    <a href="#"><button type="button" id="enter-teamStat" class="btn btn-primary">Submit</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{!- modal for entering a player stat--}}
+
+    <div class="modal fade" id="new-userStat" tabindex="-1" role="dialog" aria-labelledby="user-modal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="user-modal">Enter Your Stat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="userStat-choices">Select team</label>
+                        <select class="form-control" id="userStat-choices">
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="userStat-select">Select stat</label>
+                        <select class="form-control" id="userStat-select">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userStat-value">Enter updated value</label>
+                    <input type="text" class="form-control" id="userStat-value" placeholder="enter updated value here">
+                </div>
+                <div class="modal-footer">
+                    <a href="#"><button type="button" id="enter-userStat" class="btn btn-primary">Submit</button></a>
+                </div>
+            </div>
         </div>
     </div>
 

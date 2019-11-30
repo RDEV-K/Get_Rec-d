@@ -1,26 +1,34 @@
 <!--Create New Account-->
 <h1 class="text-center">Create New Account!</h1>
 
-<form class="col-lg-6 offset-lg-3 create-form">
+<form id="signup-form" name="signup-form" method="post" class="col-lg-6 offset-lg-3 create-form" onsubmit="return validation(this)">
     <div class="form-group">
-        <label for="username">username</label>
-        <input type="username" class="form-control" id="usernameInput" placeholder="teamplayer">
+        <label for="first-name">first name</label>
+        <input type="text" class="form-control" id="first-name" name="firstName" placeholder="name" required>
+    </div>
+    <div class-"form-group">
+        <label for="last-name">last name</label>
+        <input type="text" class="form-control" id="last-name" name="lastName" placeholder="last" required>
+    </div>
+    <div class="form-group">
+        <label for="usernameInput">username</label>
+        <input type="username" id="usernameInput" name="username" class="form-control" min="2" max="25" placeholder="teamplayer" required>
     </div>
     <div class="form-group">
         <label for="password">password</label>
-        <input type="password" class="form-control" id="pwdInput" placeholder="yourpassword">
+        <input type="password" class="form-control" id="pwdInput" name="password" placeholder="yourpassword" required>
     </div>
     <div class="form-group">
         <label for="email">email</label>
-        <input type="email" class="form-control" id="emailInput" placeholder="email@teamplayer.com">
+        <input type="email" class="form-control" id="emailInput" name="email" placeholder="email@teamplayer.com" required>
     </div>
     <div class="form-group">
         <label for="zipcode">zipcode</label>
-        <input type="zipcode" class="form-control" id="zipInput" placeholder="12345">
+        <input type="zipcode" class="form-control" id="zipInput" name="zip" placeholder="12345" required>
     </div>
     <div class="form-group">
         <label for="phone">phone number</label>
-        <input type="phone" class="form-control" id="phone" placeholder="555 555 5555">
+        <input type="phone" class="form-control" id="phone" name="phone" placeholder="0123456789" required>
     </div>
 
    <a href="/profile"><button id="new-user" class="btn btn-primary">Submit</button></a>
