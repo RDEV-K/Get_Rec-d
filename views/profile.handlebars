@@ -1,3 +1,4 @@
+
  <div class="jumbotron jumbotron-fluid" id="profile-jumbotron">
         <div class="container">
             <h1 class="display-4 profile-title">
@@ -12,6 +13,7 @@
             </p>
         </div>
     </div>
+
 
     {{!- modal for entering a team stat--}}
 
@@ -90,7 +92,7 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <div id="leagues-card"  class="card">
+            <div id="leagues-card" class="card">
                 <div class="card-body">
                     <h5 class="card-title">View Your Leagues</h5>
                 </div>
@@ -111,20 +113,74 @@
             </div>
         </div>
     </div>
-    <div id="profileContent">
+    <div id="profileContent" class="row">
+    </div>
 
- <div class="modal fade" id="statsModal" tabindex="-1" role="dialog" aria-labelledby="statsModalLabel"
+    {{!-- modal for adding a updating a stat button --}}
+    <div class="modal fade" id="update-stat-modal" tabindex="-1" role="dialog" aria-labelledby="update-stat-label"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="statsModalLabel">Add A Stat</h5>
+                    <h5 class="modal-title" id="update-stat-label">Update a stat</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
+                        <label for="update-sport">Choose the sport</label>
+                        <select class="form-control" id="update-sport">
+                            {{!-- this will need to be populated with handlebars; these are examples for now --}}
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-stat-options">Choose the stat</label>
+                        <select class="form-control" id="update-stat-options">
+                            {{!-- this will need to be populated with handlebars; these are examples for now --}}
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-stat-number">Update your stat (this will be added to your current total)</label>
+                        <input id="update-stat-number" type="number">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#"><button type="button" class="btn btn-primary">Submit</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{!-- modal for update a stat button --}}
+     <div class="modal fade" id="add-stat-modal" tabindex="-1" role="dialog" aria-labelledby="add-stat-label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+<<<<<<< HEAD
+                    <h5 class="modal-title" id="statsModalLabel">Add A Stat</h5>
+=======
+                    <h5 class="modal-title" id="add-stat-label">Add a new stat</h5>
+>>>>>>> 3ded6503c333ea2dd1f50c416204e14f196b8fff
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+<<<<<<< HEAD
                         <label for="value1">stat one</label>
                         <input type="integer" class="form-control" id="value1" placeholder="teamplayer">
                     </div>
@@ -135,9 +191,43 @@
                 </div>
                 <div class="modal-footer">
                     <a href="/profile"><button type="button" class="btn btn-primary">Submit</button></a>
+=======
+                        <label for="sport">Choose a sport</label>
+                        <select class="form-control" id="sport">
+                            {{!-- this will need to be populated with handlebars; these are examples for now --}}
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="stat-options">Choose a stat</label>
+                        <select class="form-control" id="stat-options">
+                            {{!-- this will need to be populated with handlebars; these are examples for now --}}
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="stat-number">Total</label>
+                        <input id="stat-number" type="number">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#"><button type="button" class="btn btn-primary">Submit</button></a>
+>>>>>>> 3ded6503c333ea2dd1f50c416204e14f196b8fff
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <canvas id="stats" width="400" height="400"></canvas>
     </div>
+=======
+</div>
+>>>>>>> 3ded6503c333ea2dd1f50c416204e14f196b8fff

@@ -1,3 +1,4 @@
+/*landing page and animation*/
 .opening-screen{
     background-color: #002b5c;
     height: 100vh;
@@ -9,7 +10,43 @@
     top:0;
     left: 0;
     opacity: 0;
+    height: 100vh;
+    width: 100%;
 }
+
+.ml4 {
+  position: relative;
+  font-weight: 900;
+  font-size: 4.5em;
+  color: #c4ced4;
+  width: 375px;
+}
+
+.ml4 .letters {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 0;;
+  opacity: 0; 
+  color: #c4ced4;
+}
+
+.about-ytm{
+  padding: 0;
+  margin: 0;
+}
+.main-description{
+  background-color: #c4ced4;
+  color:  #002b5c;
+}
+
+.index-lead{
+  width: 75%;
+}
+
+
+
+/*styling for all pages*/
 nav{
   background-color: #002b5c;  
 }
@@ -24,6 +61,7 @@ nav{
 color: #c4ced4;
 text-decoration-line: underline;
 }
+
 .btn-primary {
   background-color: #002b5c; 
   color:#c4ced4;
@@ -43,56 +81,44 @@ text-decoration-line: underline;
 
 .display-4{
   color:  #c4ced4;
-  text-shadow: 2px 2px rgba(0, 0, 0, .5);
+  font-family: 'Heebo', sans-serif;
+  filter: drop-shadow(10px -1px 20px #002b5c);
 }
 
-.jumbotron{
-  background-image: url("../images/team.jpg");
-  background-size: cover;
-  
-}
 .container-fluid{
   padding: 0;
 }
+
 .lead{
-  text-shadow: 2px 2px rgba(0, 0, 0, .5);
+  filter: drop-shadow(1px 1px 5px black);
   font-weight: bold;
   color: #c4ced4;
 }
-.ml4 {
-    position: relative;
-    font-weight: 900;
-    font-size: 4.5em;
-    color: #c4ced4;
-    width: 375px;
-  }
-  .ml4 .letters {
-    position: absolute;
-    margin: auto;
-    left: 0;
-    top: 0;
-    opacity: 0; 
-    color: #c4ced4;
-  }
+
+img{
+  width: 100%;
+}
+
+.jumbotron-fluid{
+padding-top: 10%;
+padding-bottom: 10%;
+width: 100%;
+}
+
+.container-fluid{
+  margin: 0;
+}
+
+/*Index Page Styling*/
+#index-image{
+  background-image: url("../images/team-blur.jpg");
+  background-size: cover;
+}
 
 /*Styling for Profile Page*/
-
-#profile-jumbotron {
-  background-image: url("../images/profilebg.jpg");
+#profile-jumbotron{
+  background-image: url("../images/profilebg-blur.jpg");
   background-size: cover;
-  padding-top: 10%;
-  padding-bottom: 10%;
-
-}
-
-.profile-title {
-  color: #c4ced4;
-  text-shadow: 2px 2px rgba(0, 0, 0, .5);
-  font-size: 50pt;
-}
-
-.lead {
-  color:#c4ced4;
 }
 
 .btn-primary {
@@ -115,12 +141,13 @@ text-decoration-line: underline;
 #stat-jumbotron {
   background-image: url("../images/statbg.jpg");
   background-size: cover;
-  padding-top: 10%;
-  padding-bottom: 10%;
 }
 
+/*styling for leagues page*/
+#leagues-jumbotron{
+  background-image: url("../images/leaguespage-blur.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-input:valid {
-  border: 2px solid black;
-}
+

@@ -1,17 +1,20 @@
-<div class="container-fluid opening-screen d-flex flex-column justify-content-center align-items-center">
+{{!-- <div class="container-fluid opening-screen d-flex flex-column justify-content-center align-items-center">
     <h4 class="ml4">
         <span class="letters letters-1 text-center">Ready</span>
         <span class="letters letters-2 text-center">Set</span>
         <span class="letters letters-3">Get Rec'd!</span>
     </h4>
-</div>
-<div class="container-fluid landing-page d-flex flex-column justify-content-center align-items-center">
-    <div class="jumbotron jumbotron-fluid text-center">
+</div> --}}
+
+<div id="index-image" class="container-fluid landing-page d-flex flex-column justify-content-center text-center align-items-center">
         <h1 class="display-4 title">
-            Wecome to Your Team Manager
+            Welcome to Your Team Manager
         </h1>
-        <p class="lead">An easy way for rec teams to connect with their players and each other. Update stats on players and teams, create new teams and leagues, record game scores and more.
-            So what are you waiting for? Are you ready to get rec'd? Create an account to unlock full access of Your Team Manager.
+        <p class="lead index-lead">
+            An easy way to connect with rec leagues and teams in your area. View and log stats, stay up to date on your leagues and join new teams. Don't see a team or league listed? Create your create your
+            own!
+            <br>
+            So, are you ready to Get Rec'd?
         </p>
         <div class="buttons">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -20,33 +23,34 @@
 
             <a href="/signup"><button id="sign-up" class="btn btn-primary">Sign Up</button></a>
         </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="username">username</label>
+                    <input type="username" class="form-control" id="usernameInput" placeholder="teamplayer">
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="username">username</label>
-                        <input type="username" class="form-control" id="usernameInput" placeholder="teamplayer">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">password</label>
-                        <input type="password" class="form-control" id="pwdInput" placeholder="yourpassword">
-                    </div>
+                <div class="form-group">
+                    <label for="password">password</label>
+                    <input type="password" class="form-control" id="pwdInput" placeholder="yourpassword">
                 </div>
-                <div class="modal-footer">
-                    <a href="/profile"><button type="button" id="submit-new-stat" class="btn btn-primary">Submit</button></a>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="/profile"><button type="button" class="btn btn-primary">Submit</button></a>
             </div>
         </div>
     </div>
+</div>
 
 </div>

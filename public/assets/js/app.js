@@ -8,51 +8,55 @@ ml4.durationIn = 800;
 ml4.durationOut = 600;
 ml4.delay = 500;
 
-
 var landingPage = {};
+landingPage.scale = 0,
+landingPage.scaleIn = [0, 1];
 landingPage.opacityIn = [0, 1];
 
 anime.timeline({ loop: false })
-  .add({
+.add({
+  targets: '.landing-page',
+  scale: landingPage.scale
+}).add({
     targets: '.ml4 .letters-1',
     opacity: ml4.opacityIn,
     scale: ml4.scaleIn,
-    duration: ml4.durationIn
+    duration: ml4.durationIn,
   }).add({
     targets: '.ml4 .letters-1',
     opacity: 0,
     scale: ml4.scaleOut,
     duration: ml4.durationOut,
     easing: "easeInExpo",
-    delay: ml4.delay
+    delay: ml4.delay,
   }).add({
     targets: '.ml4 .letters-2',
     opacity: ml4.opacityIn,
     scale: ml4.scaleIn,
-    duration: ml4.durationIn
+    duration: ml4.durationIn,
   }).add({
     targets: '.ml4 .letters-2',
     opacity: 0,
     scale: ml4.scaleOut,
     duration: ml4.durationOut,
     easing: "easeInExpo",
-    delay: ml4.delay
+    delay: ml4.delay,
   }).add({
-    targets: '.ml4 .letters-3',
+    targets: '.ml4 .letters-3', 
     opacity: ml4.opacityIn,
     scale: ml4.scaleIn,
-    duration: ml4.durationIn
+    duration: ml4.durationIn,
   }).add({
     targets: ['.ml4 .letters-3', '.opening-screen'],
     opacity: 0,
     scale: ml4.scaleOut,
     duration: ml4.durationOut,
     easing: "easeInExpo",
-    delay: ml4.delay
+    delay: ml4.delay,
   }).add({
     targets: '.landing-page',
-    opacity: landingPage.opacityIn,
-    easing: "easeInOutCirc",
+    scale: landingPage.scaleIn,
+    opacity: landingPage.opacityIn
   }).add({
     targets: ['.ml4', '.opening-screen'],
     scale: 1
