@@ -57,4 +57,4 @@ module.exports = function(app) {
     });
   };
   
-      //this is the dummy route for Chart.js
+  
