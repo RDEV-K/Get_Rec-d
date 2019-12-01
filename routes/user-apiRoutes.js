@@ -17,6 +17,16 @@ module.exports = function(app) {
       });
     });
 
+    app.get("/api/user/team/:team_id", function(req, res) {
+      db.User.findAll({
+        where: {
+          team_id: req.params.team_id
+        }
+      }).then(function(dbUser) {
+        res.json(dbUser);
+      });
+    });
+
     app.get("/api/user/:id", function(req, res) {
       db.User.findOne({
         where: {

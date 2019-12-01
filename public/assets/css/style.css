@@ -111,13 +111,13 @@ width: 100%;
 
 /*Index Page Styling*/
 #index-image{
-  background-image: url("../images/team-blur.jpg");
+  background-image: url("../images/team.jpg");
   background-size: cover;
 }
 
 /*Styling for Profile Page*/
 #profile-jumbotron{
-  background-image: url("../images/profilebg-blur.jpg");
+  background-image: url("../images/profilebg.jpg");
   background-size: cover;
 }
 
@@ -145,7 +145,7 @@ width: 100%;
 
 /*styling for leagues page*/
 #leagues-jumbotron{
-  background-image: url("../images/leaguespage-blur.jpg");
+  background-image: url("../images/leaguespage.jpg");
   background-size: cover;
   background-position: center;
 }
