@@ -26,7 +26,7 @@ module.exports = function(app) {
         res.render("community.handlebars");
     });
  
-//   app.get("*", function(req, res) {
-//     res.render("404");
-//   });
+  app.get("*", function(req, res) {
+    res.render("404");
+  });
 };
