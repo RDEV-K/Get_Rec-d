@@ -6,22 +6,22 @@
         <br></br>
         <div class="container d-flex justify-content-center">
             <div class="dropdown d-flex flex-row bd-highlight mb-3 col-sm">
-                <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="statButton"
+                <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="leagueStatButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Teams
+                    Leagues
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="selectLeague">
                     <a class="dropdown-item" href="#">Team 1</a>
                     <a class="dropdown-item" href="#">Team 2</a>
                     <a class="dropdown-item" href="#">Team 3</a>
                 </div>
             </div>
             <div class="dropdown d-flex flex-row bd-highlight mb-3 col-sm">
-                <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="statButton"
+                <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="teamStatButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Individual
+                    Teams
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="selectTeam">
                     <a class="dropdown-item" href="#">Person 1</a>
                     <a class="dropdown-item" href="#">Person 2</a>
                     <a class="dropdown-item" href="#">Person 3</a>
@@ -30,3 +30,9 @@
         </div>
     </div>
 </div>
+
+<canvas id="myChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<div id="myChart" width="100" height="100"></div>

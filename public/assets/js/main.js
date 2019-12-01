@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var chartData = [];
+    var nameForChart = "";
 //This is the code for the login page
     $("#loginUser").on("click", function(event) {
         event.preventDefault();
@@ -38,12 +40,12 @@ $(document).ready(function() {
         event.preventDefault();
         var newUser = {
             name: $("#usernameInput").val().trim(),
-            // firstName: $("#first-name").val().trim(),
-            // lastName: $("#last-name").val().trim(),
+            firstName: $("#first-name").val().trim(),
+            lastName: $("#last-name").val().trim(),
             password: $("#pwdInput").val().trim(),
             email: $("#emailInput").val().trim(),
-            phone: $("#zipInput").val().trim(),
-            zip: $("#phone").val().trim(),
+            phone: $("#phone").val().trim(),
+            zip: $("#zipInput").val().trim(),
             team_id: "0"
         };
         console.log(newUser)
@@ -295,20 +297,27 @@ $(document).ready(function() {
                 $("#userStat-select").append(newStatOption);
                 $("#enter-userStat").on("click", function(event) {
                     event.preventDefault();
+                    var userStatTeam = $("#userStat-choices").val().trim();
+                    var selectedStatTeam = 0;
+                    for (var i = 0; i < res.length; i++){
+                        if (userStatTeam === res[i].team_id){
+                            selectedStatTeam = res[i].id;
+                        }
+                    }
                     var statSelected = $("#userStat-select").val().trim();
                     if (statSelected === "touchdowns"){
                         var addStatToUser = {
-                            id: $("#userStat-choices").val().trim(),
+                            id: selectedStatTeam,
                             touchdowns: $("#userStat-value").val().trim()
                         };
                     } else if (statSelected === "goals") {
                         var addStatToUser = {
-                            id: $("#userStat-choices").val().trim(),
+                            id: selectedStatTeam,
                             goals: $("#userStat-value").val().trim()
                         };
                     } else {
                         var addStatToUser = {
-                            id: $("#userStat-choices").val().trim(),
+                            id: selectedStatTeam,
                             score: $("#userStat-value").val().trim()
                         };
                     }
@@ -367,10 +376,333 @@ $(document).ready(function() {
             });
         });
     });
+    
+    //This section of code lists all teams from all leagues in the database that the active user belongs to
+    $("#userStatButton").on("click", function(event) {
+        event.preventDefault();
+        $("#selectUserStat").empty();
+        $.get("/api/active", function(data) {
+            var activeLength = data.length - 1;
+            var name = data[activeLength].name;
+            $.get("/api/user/" + name, function(res) {
+                var id;
+                var newOption;
+                for (var i=0; i < res.length; i++){
+                    id = res[i].team_id;
+                    if (id !== "0"){
+                        $.get("/api/team/" + id, function(userTeam) {
+                            id = userTeam.league_id;
+                                $.get("/api/league/" + id, function(userLeague) {
+                                    newOption = $("<option>");
+                                    newOption.addClass("user");
+                                    newOption.attr("value", userTeam.id);
+                                    newOption.attr("user_name", name);
+                                    newOption.attr("team_name", userTeam.name);
+                                    newOption.attr("league_name", userLeague.name);
+                                    newOption.html(userLeague.name + ": " + userTeam.name)
+                                    $("#selectUserStat").append(newOption);
+                                });
+                        });
+                    }
+                }
+            });
+        });
+    });
+     
+    $(document).on("click",".user", getUserData);
 
+    function getUserData () {
+        var team_id = $(this).attr("value");
+        var name = $(this).attr("user_name");
+        var team_name = $(this).attr("team_name");
+        var league_name = $(this).attr("league_name");
+        $("#myChart").empty();
+            var totalTouchdowns = 0;
+            var totalGoals = 0;
+            var totalScore = 0;
+            chartData = [];
+            $.ajax({
+                url: "/api/user/" + name,
+                method: "GET"
+                })
+                .then(function(res){
+                    totalTouchdowns = 0;
+                    totalGoals = 0;
+                    totalScore = 0;
+                    for (var i = 0; i < res.length; i++){
+                        if (team_id === res[i].team_id){
+                            totalTouchdowns = totalTouchdowns + parseInt(res[i].touchdowns);
+                            totalGoals = totalGoals + parseInt(res[i].goals);
+                            totalScore = totalScore + parseInt(res[i].score);
+                        }
+                    }
+                chartData.push(totalTouchdowns);
+                chartData.push(totalGoals);
+                chartData.push(totalScore);
+                nameForChart = "Totals for " + team_name + " in league " + league_name;
+                console.log(chartData)
+                createUserChart(chartData, nameForChart);
+                });
+    }
 
 //This is the code for the stats page
-    //Leagues-card lists the leagues the active user belongs to
+    //Team stat button lists all teams from all leagues in the database
+    $("#teamStatButton").on("click", function(event) {
+        event.preventDefault();
+        $("#selectTeam").empty();
+        $.ajax({
+            url: "/api/team",
+            method: "GET"
+            })
+            .then(function(response){
+                $.ajax({
+                    url: "/api/league",
+                    method: "GET"
+                    })
+                    .then(function(res){
+                        for (var i=0; i < response.length; i++){
+                            for (var j=0; j < res.length; j++){
+                                if (parseInt(response[i].league_id) === res[j].id){
+                                    var newOption = $("<option>");
+                                    newOption.addClass("team");
+                                    newOption.attr("value", response[i].id);
+                                    newOption.attr("team_name", response[i].name);
+                                    newOption.attr("wins", response[i].wins);
+                                    newOption.attr("losses", response[i].losses);
+                                    newOption.attr("league_name", res[j].name);                                    
+                                    newOption.html(res[j].name + ": " + response[i].name)
+                                    $("#selectTeam").append(newOption);
+                                }
+                            }
+                        }
+                    });
+            });
+    });
+    $(document).on("click",".team", getTeamData);
 
+    function getTeamData () {
+        var team_id = $(this).attr("value");
+        var team_name = $(this).attr("team_name");
+        var team_wins = $(this).attr("wins");
+        var team_losses = $(this).attr("losses");
+        var league_name = $(this).attr("league_name");
+        $("#myChart").empty();
+            var wins = 0;
+            var losses = 0;
+            var totalTouchdowns = 0;
+            var totalGoals = 0;
+            var totalScore = 0;
+            chartData = [];
+            $.ajax({
+                url: "/api/user/team/" + team_id,
+                method: "GET"
+                })
+                .then(function(res){
+                    totalTouchdowns = 0;
+                    totalGoals = 0;
+                    totalScore = 0;
+                    for (var i = 0; i < res.length; i++){
+                        totalTouchdowns = totalTouchdowns + parseInt(res[i].touchdowns);
+                        totalGoals = totalGoals + parseInt(res[i].goals);
+                        totalScore = totalScore + parseInt(res[i].score);
+                    }
+                chartData.push(team_wins);
+                chartData.push(team_losses);
+                chartData.push(totalTouchdowns);
+                chartData.push(totalGoals);
+                chartData.push(totalScore);
+                nameForChart = "Totals for " + team_name + " in league " + league_name;
+                console.log(chartData)
+                createTeamChart(chartData, nameForChart);
+                });
+    }
+
+    //League stat button lists all leagues in the database
+    $("#leagueStatButton").on("click", function(event) {
+        event.preventDefault();
+        $("#selectLeague").empty();
+        $.ajax({
+            url: "/api/league",
+            method: "GET"
+            })
+            .then(function(response){
+                for (var i=0; i < response.length; i++){
+                    var newOption = $("<option>");
+                    newOption.addClass("league");
+                    newOption.attr("value", response[i].id);
+                    newOption.attr("name", response[i].name);
+                    newOption.html(response[i].name)
+                    $("#selectLeague").append(newOption);
+                };
+            });
+    });
+    $(document).on("click",".league", getLeagueData);
+
+    function getLeagueData () {
+        var league_id = $(this).attr("value");
+        var league_name = $(this).attr("name");
+        $("#myChart").empty();
+        $.get("/api/team/league/" + league_id, function(data) {
+            var games = 0;
+            var totalTouchdowns = 0;
+            var totalGoals = 0;
+            var totalScore = 0;
+            var touchdownsData = 0;
+            var goalsData = 0;
+            var scoreData = 0;
+            chartData = [];
+            for (var i = 0; i < data.length; i++){
+                console.log(data.length)
+                games = games + parseInt(data[i].wins) + parseInt(data[i].losses)
+                team_id = data[i].id;
+                $.ajax({
+                    url: "/api/user/team/" + team_id,
+                    method: "GET"
+                    })
+                    .then(function(res){
+                        totalTouchdowns = 0;
+                        totalGoals = 0;
+                        totalScore = 0;
+                        for (var i = 0; i < res.length; i++){
+                            totalTouchdowns = totalTouchdowns + parseInt(res[i].touchdowns);
+                            totalGoals = totalGoals + parseInt(res[i].goals);
+                            totalScore = totalScore + parseInt(res[i].score);
+                        }
+                    touchdownsData = touchdownsData + totalTouchdowns;
+                    goalsData = goalsData + totalGoals;
+                    scoreData = scoreData + totalScore;
+                    games = games/2; //Since teams play each other, the league total is half the combined team games
+                    chartData = [];
+                    chartData.push(games);
+                    chartData.push(touchdownsData);
+                    chartData.push(goalsData);
+                    chartData.push(scoreData);
+                    nameForChart = "Totals for " + league_name;
+                    console.log(chartData)
+                    createLeagueChart(chartData, nameForChart);
+                    });
+            }
+        });
+    }
+
+    function createLeagueChart(chartData, nameForChart){
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Games', 'Touchdowns', 'Goals', 'Points Scored'],
+                datasets: [{
+                    label: nameForChart,
+                    data: chartData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    function createTeamChart(chartData, nameForChart){
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Wins', 'Losses', 'Touchdowns', 'Goals', 'Points Scored'],
+                datasets: [{
+                    label: nameForChart,
+                    data: chartData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    function createUserChart(chartData, nameForChart){
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Touchdowns', 'Goals', 'Points Scored'],
+                datasets: [{
+                    label: nameForChart,
+                    data: chartData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
 
 });

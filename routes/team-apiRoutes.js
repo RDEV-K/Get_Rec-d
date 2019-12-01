@@ -7,6 +7,16 @@ module.exports = function(app) {
       });
     });
   
+    app.get("/api/team/league/:league_id", function(req, res) {
+      db.Team.findAll({
+        where: {
+          league_id: req.params.league_id
+        }
+      }).then(function(dbTeam) {
+        res.json(dbTeam);
+      });
+    });
+    
     app.get("/api/team/:id", function(req, res) {
       db.Team.findOne({
         where: {
