@@ -16,7 +16,7 @@ $(document).ready(function() {
                     var active = {
                         name: data[i].name,
                         firstName: data[i].firstName,
-                        lastName: deta[i].lastName,
+                        lastName: data[i].lastName,
                         password: data[i].password,
                         email: data[i].email,
                         phone: data[i].phone,
