@@ -2,6 +2,9 @@ $(document).ready(function() {
     var chartData = [];
     var nameForChart = "";
 //This is the code for the login page
+    $("#loginButton").on("click", function(event) {
+        $("#loginError").empty();
+    });
     $("#loginUser").on("click", function(event) {
         event.preventDefault();
         var currentUser = $("#usernameInput").val().trim();
@@ -27,8 +30,9 @@ $(document).ready(function() {
                     }
                     $.post("/api/active", active).then(getUser)
                     location.replace("/profile");
+                    return
                 }
-                else if (i === data.length - 1){
+                else if (currentUser !== checkUser || currentPassword !== checkPassword){
                     $("#loginError").text("No match, try again!");
                 }
             }
@@ -63,6 +67,10 @@ $(document).ready(function() {
 
 //This is the code for the leagues page
     //Submit-league create a new league and a new team for that league
+        $("#createLeague").on("click", function(event) {
+            event.preventDefault();
+            $("#duplicateLeague").empty();
+        });
         $("#submit-league").on("click", function(event) {
             event.preventDefault();
                 var newLeague = {
@@ -80,7 +88,7 @@ $(document).ready(function() {
                                 $("#duplicateLeague").text("League name already used, try again!");
                             }
                             else if (i === data.length - 1){
-                                $("#duplicateLeague").text("");
+//                                $("#duplicateLeague").text("");
                                 $.post("/api/league", newLeague).then(getNewLeagueID)
                             }
                         }
@@ -332,55 +340,55 @@ $(document).ready(function() {
     });
 
     //Leagues-card lists the leagues the active user belongs to
-    $("#leagues-card").on("click", function(event) {
-        event.preventDefault();
-        $.get("/api/active", function(data) {
-            var activeLength = data.length - 1;
-            var name = data[activeLength].name;
-            $.get("/api/user/" + name, function(data) {
-                var id;
-                for (var i=0; i < data.length; i++){
-                    id = data[i].team_id;
-                    if (id !== "0"){
-                        $.get("/api/team/" + id, function(data) {
-                            id = data.league_id;
-                                $.get("/api/league/" + id, function(data) {
-                                    console.log(data)
-                                    var leagueName = data.name;
-                                    $("#profileContent").append("<br>" + leagueName);
-                                });
-                        });
-                    }
-                }
-            });
-        });
-    });
-    //Teams-card lists the teams the active user belongs to
-    $("#teams-card").on("click", function(event) {
-        event.preventDefault();
-        $.get("/api/active", function(data) {
-            var activeLength = data.length - 1;
-            var name = data[activeLength].name;
-            $.get("/api/user/" + name, function(data) {
-                var id;
-                for (var i=0; i < data.length; i++){
-                    id = data[i].team_id;
-                    if (id !== "0"){
-                        $.get("/api/team/" + id, function(data) {
-                            console.log(data)
-                            var teamName = data.name;
-                            $("#profileContent").append("<br>" + teamName);
-                        });
-                    }
-                }
-            });
-        });
-    });
+    // $("#leagues-card").on("click", function(event) {
+    //     event.preventDefault();
+    //     $.get("/api/active", function(data) {
+    //         var activeLength = data.length - 1;
+    //         var name = data[activeLength].name;
+    //         $.get("/api/user/" + name, function(data) {
+    //             var id;
+    //             for (var i=0; i < data.length; i++){
+    //                 id = data[i].team_id;
+    //                 if (id !== "0"){
+    //                     $.get("/api/team/" + id, function(data) {
+    //                         id = data.league_id;
+    //                             $.get("/api/league/" + id, function(data) {
+    //                                 console.log(data)
+    //                                 var leagueName = data.name;
+    //                                 $("#profileContent").append("<br>" + leagueName);
+    //                             });
+    //                     });
+    //                 }
+    //             }
+    //         });
+    //     });
+    // });
+    // //Teams-card lists the teams the active user belongs to
+    // $("#teams-card").on("click", function(event) {
+    //     event.preventDefault();
+    //     $.get("/api/active", function(data) {
+    //         var activeLength = data.length - 1;
+    //         var name = data[activeLength].name;
+    //         $.get("/api/user/" + name, function(data) {
+    //             var id;
+    //             for (var i=0; i < data.length; i++){
+    //                 id = data[i].team_id;
+    //                 if (id !== "0"){
+    //                     $.get("/api/team/" + id, function(data) {
+    //                         console.log(data)
+    //                         var teamName = data.name;
+    //                         $("#profileContent").append("<br>" + teamName);
+    //                     });
+    //                 }
+    //             }
+    //         });
+    //     });
+    // });
     
     //This section of code lists all teams from all leagues in the database that the active user belongs to
-    $("#userStatButton").on("click", function(event) {
+    $("#viewStat").on("click", function(event) {
         event.preventDefault();
-        $("#selectUserStat").empty();
+        $("#view-userTeamStats").empty();
         $.get("/api/active", function(data) {
             var activeLength = data.length - 1;
             var name = data[activeLength].name;
@@ -400,51 +408,67 @@ $(document).ready(function() {
                                     newOption.attr("team_name", userTeam.name);
                                     newOption.attr("league_name", userLeague.name);
                                     newOption.html(userLeague.name + ": " + userTeam.name)
-                                    $("#selectUserStat").append(newOption);
+                                    $("#view-userTeamStats").append(newOption);
                                 });
                         });
                     }
                 }
+
+     
+//    $(document).on("click",".user", getUserData);
+
+    // function getUserData () {
+    //     var team_id = $(this).attr("value");
+    //     var name = $(this).attr("user_name");
+    //     var team_name = $(this).attr("team_name");
+    //     var league_name = $(this).attr("league_name");
+                $("#view-userStat").on("click", function(event) {
+                    event.preventDefault();
+                    var team_id = $("#view-userTeamStats").val().trim();
+//                    var name = $("#view-userTeamStats").attr("user_name");
+//                    var team_name = $("#view-userTeamStats").attr("team_name");
+//                    var league_name = $("#view-userTeamStats").attr("league_name");
+                    $("#myChart").empty();
+                        var totalTouchdowns = 0;
+                        var totalGoals = 0;
+                        var totalScore = 0;
+                        chartData = [];
+                        $.ajax({
+                            url: "/api/user/" + name,
+                            method: "GET"
+                            })
+                            .then(function(res){
+                                totalTouchdowns = 0;
+                                totalGoals = 0;
+                                totalScore = 0;
+                                for (var i = 0; i < res.length; i++){
+                                    if (team_id === res[i].team_id){
+                                        totalTouchdowns = totalTouchdowns + parseInt(res[i].touchdowns);
+                                        totalGoals = totalGoals + parseInt(res[i].goals);
+                                        totalScore = totalScore + parseInt(res[i].score);
+                                    }
+                                }
+                                chartData.push(totalTouchdowns);
+                                chartData.push(totalGoals);
+                                chartData.push(totalScore);
+                                id = team_id;
+                                $.get("/api/team/" + id, function(userTeam) {
+                                    id = userTeam.league_id;
+                                    team_name = userTeam.name;
+                                        $.get("/api/league/" + id, function(userLeague) {
+                                            league_name = userLeague.name;
+        
+                                            nameForChart = " Your stats with " + team_name + " in league " + league_name;
+                                            console.log(chartData)
+                                            createUserChart(chartData, nameForChart);
+                                        });
+                                });
+                            
+                            });
+                });
             });
         });
     });
-     
-    $(document).on("click",".user", getUserData);
-
-    function getUserData () {
-        var team_id = $(this).attr("value");
-        var name = $(this).attr("user_name");
-        var team_name = $(this).attr("team_name");
-        var league_name = $(this).attr("league_name");
-        $("#myChart").empty();
-            var totalTouchdowns = 0;
-            var totalGoals = 0;
-            var totalScore = 0;
-            chartData = [];
-            $.ajax({
-                url: "/api/user/" + name,
-                method: "GET"
-                })
-                .then(function(res){
-                    totalTouchdowns = 0;
-                    totalGoals = 0;
-                    totalScore = 0;
-                    for (var i = 0; i < res.length; i++){
-                        if (team_id === res[i].team_id){
-                            totalTouchdowns = totalTouchdowns + parseInt(res[i].touchdowns);
-                            totalGoals = totalGoals + parseInt(res[i].goals);
-                            totalScore = totalScore + parseInt(res[i].score);
-                        }
-                    }
-                chartData.push(totalTouchdowns);
-                chartData.push(totalGoals);
-                chartData.push(totalScore);
-                nameForChart = "Totals for " + team_name + " in league " + league_name;
-                console.log(chartData)
-                createUserChart(chartData, nameForChart);
-                });
-    }
-
 //This is the code for the stats page
     //Team stat button lists all teams from all leagues in the database
     $("#teamStatButton").on("click", function(event) {
@@ -511,7 +535,7 @@ $(document).ready(function() {
                 chartData.push(totalTouchdowns);
                 chartData.push(totalGoals);
                 chartData.push(totalScore);
-                nameForChart = "Totals for " + team_name + " in league " + league_name;
+                nameForChart = "Stats for " + team_name + " in league " + league_name;
                 console.log(chartData)
                 createTeamChart(chartData, nameForChart);
                 });
@@ -577,7 +601,7 @@ $(document).ready(function() {
                     chartData.push(touchdownsData);
                     chartData.push(goalsData);
                     chartData.push(scoreData);
-                    nameForChart = "Totals for " + league_name;
+                    nameForChart = "Stats for " + league_name;
                     console.log(chartData)
                     createLeagueChart(chartData, nameForChart);
                     });
