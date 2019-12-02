@@ -12,7 +12,7 @@ CREATE TABLE Active
     phone VARCHAR(100),
     zip VARCHAR(100),
     team_id VARCHAR(100),
-    touchdowns VARCHAR(100),
+    touchdown VARCHAR(100),
     goals VARCHAR(100),
     score VARCHAR(100),
     PRIMARY KEY (id)

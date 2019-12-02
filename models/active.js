@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.STRING,
     zip: DataTypes.STRING,
     team_id: DataTypes.STRING,
-    touchdowns: DataTypes.STRING,
+    touchdown: DataTypes.STRING,
     goals: DataTypes.STRING,
     score: DataTypes.STRING
   });
