@@ -458,7 +458,7 @@ $(document).ready(function() {
                                         $.get("/api/league/" + id, function(userLeague) {
                                             league_name = userLeague.name;
         
-                                            nameForChart = " Your stats with " + team_name + " in league " + league_name;
+                                            nameForChart = "Your stats with " + team_name + " in league " + league_name;
                                             console.log(chartData)
                                             createUserChart(chartData, nameForChart);
                                         });

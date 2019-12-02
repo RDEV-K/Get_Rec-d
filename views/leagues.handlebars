@@ -3,16 +3,24 @@
         <h1 class="display-4">League Information</h1>
         <p class="lead">Checkout all the different leagues in the area and join any new teams.</p>
         <div class="buttons">
-            <button type="button" class="btn btn-primary profBtn btn-lg" data-toggle="modal" data-target="#new-league">
+            <button type="button" class="btn btn-primary profBtn btn-lg" data-toggle="modal" data-target="#new-league"
+                id="createLeague">
                 Create League
             </button>
-            <button type="button" class="btn btn-primary profBtn btn-lg" data-toggle="modal" data-target="#new-team">
+            <button type="button" class="btn btn-primary profBtn btn-lg" data-toggle="modal" data-target="#new-team"
+                id="createTeam">
                 Create Team
             </button>
-            <button type="button" class="btn btn-primary profBtn btn-lg" data-toggle="modal" data-target="#new-player">
+            <button type="button" class="btn btn-primary profBtn btn-lg" data-toggle="modal" data-target="#new-player"
+                id="joinTeam">
                 Join Team
             </button>
-        <div id="leagues-list"></div>
+        </div>
+    </div>
+
+</div>
+<div class="container-fluid d-flex justify-content-around pt-5">
+    <div id="leagues-list"></div>
 
     {{!- modal for new league --}}
     <div class="modal fade" id="new-league" tabindex="-1" role="dialog" aria-labelledby="new-league-modal"
@@ -110,7 +118,4 @@
             </div>
         </div>
     </div>
-        </div>
-    </div>
-
 </div>
